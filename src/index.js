@@ -19,8 +19,6 @@ function refreshWeather(response) {
 }
 
 function searchCity(city) {
-  let city = searchInputElement.value;
-
   let apiKey = "f34a8d6a02db118adcod9t333a734e8f";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
@@ -60,7 +58,7 @@ function formatDate(date) {
 }
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", handleSearchSubmit);
 
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
