@@ -53,6 +53,7 @@ main {
   margin: 0;
   font-size: 38px;
   line-height: 48px;
+  display: flex;
 }
 
 .weather-app-details {
