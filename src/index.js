@@ -58,14 +58,18 @@ function formatDate(date) {
 }
 
 function displayForecast() {
-  let forecast = document.querySelector("#forecast");
+  let forecastElemet = document.querySelector("#forecast");
 
   let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
 
+  let forecastHtml = "";
+
   days.forEach(function (day) {
-    forecast.innerHTML = `
+    forecastHtml =
+      forecastHtml +
+      `
         <div class="weather-forecast-day">
-        <div class="weather-forecast-date">Tue</div>
+        <div class="weather-forecast-date">${day}</div>
         <div class="weather-forecast-icon">🌤️</div>
         <div class="weather-forecast-temperatures">
           <div class="weather-forecast-temperature">
@@ -76,6 +80,7 @@ function displayForecast() {
       </div>
 `;
   });
+  forecastElemet.innerHTML = forecastHtml;
 }
 
 let searchForm = document.querySelector("#search-form");
