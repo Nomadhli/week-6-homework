@@ -5,12 +5,12 @@ function refreshWeather(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#wind-speed");
-  let timeElement = document.querySelector("#time");
+
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
   cityElement.innerHTML = response.data.city;
-  timeElement.innerHTML = formatDate(date);
+
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
@@ -56,30 +56,34 @@ function formatDate(date) {
   let formattedDay = days[day];
   return `${formattedDay} ${hours}:${minutes}`;
 }
+
 function displayForecast() {
   let forecast = document.querySelector("#forecast");
-  forecast.innerHTML = `
-  <div class="weather-forecast-day">
-   <div class="weather-forecast-date">Tue</div>
-    <div class="weather-forecast-icon">🌤</div>
-      <div class="weather-forecast-temperatures">
-        <div class="weather-forecast-temperature">
-          <strong>15℃</strong>
+
+  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  days.forEach(function (day) {
+    forecast.innerHTML = `
+        <div class="weather-forecast-day">
+        <div class="weather-forecast-date">Tue</div>
+        <div class="weather-forecast-icon">🌤️</div>
+        <div class="weather-forecast-temperatures">
+          <div class="weather-forecast-temperature">
+            <strong>15º</strong>
+          </div>
+          <div class="weather-forecast-temperature">9º</div>
         </div>
-         <div class="weather-forecast-temperature">
-              9℃
-        </div>
-   </div>
-  </div> `;
+      </div>
+`;
+  });
 }
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSearchSubmit);
 
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
-
 currentDateELement.innerHTML = formatDate(currentDate);
 
 searchCity("Paris");
-
 displayForecast();
